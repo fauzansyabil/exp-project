@@ -75,18 +75,18 @@
         $pelajaran_id = $_POST['pelajaran_id'];
 
         // Buat query dengan kondisi filter berdasarkan input pengguna
-        $sql = "SELECT * FROM vw_nilai WHERE 1=1";
+        $sql = "SELECT a.id, a.siswa_id, b.nama_siswa, a.pelajaran_id, c.nama_pelajaran, a.nilai FROM nilai AS a JOIN siswa AS b ON a.siswa_id = b.id JOIN mata_pelajaran AS c ON a.pelajaran_id = c.id WHERE 1=1";
 
         if ($siswa_id != "-") {
-            $sql .= " AND siswa_id = $siswa_id";
+            $sql .= " AND a.siswa_id = $siswa_id";
         }
 
         if ($pelajaran_id != "-") {
-            $sql .= " AND pelajaran_id = $pelajaran_id";
+            $sql .= " AND b.pelajaran_id = $pelajaran_id";
         }
     } else {
         // Query untuk menampilkan semua data nilai jika form tidak disubmit
-        $sql = "SELECT * FROM vw_nilai";
+        $sql = "SELECT a.id, a.siswa_id, b.nama_siswa, a.pelajaran_id, c.nama_pelajaran, a.nilai FROM nilai AS a JOIN siswa AS b ON a.siswa_id = b.id JOIN mata_pelajaran AS c ON a.pelajaran_id = c.id";
     }
 
     $result = $conn->query($sql);

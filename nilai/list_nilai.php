@@ -29,7 +29,7 @@
     include '../koneksi/koneksi.php';
 
     // Query untuk menampilkan data nilai
-    $sql = "SELECT * FROM `vw_nilai`";
+    $sql = "SELECT a.id, a.siswa_id, b.nama_siswa, a.pelajaran_id, c.nama_pelajaran, a.nilai FROM nilai AS a JOIN siswa AS b ON a.siswa_id = b.id JOIN mata_pelajaran AS c ON a.pelajaran_id = c.id";
     $result = $conn->query($sql);
 
     // Jika ada data pada tabel nilai
